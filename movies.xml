@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<movies>
+    <movie title="Xml the Movie" description="Disgusting, 1/10" genre="HORROR" length="90" releaseyear="2000">
+        <studio name="Working Title Films" countrycode="UK" postcode="W1U 4AN" />
+        <actors>
+            <actor firstname="Jeff" lastname="Bridges" sex="MALE" birthdate="1949-12-04" />
+            <actor firstname="John" lastname="Goodman" sex="MALE" birthdate="1952-06-20" />
+        </actors>
+    </movie>
+</movies>

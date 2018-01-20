@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>SKSUE Studio Page</title>
+        <script src="jquery-3.2.1.min.js"></script>
+        <script>
+            "use strict";
+
+            var SKSUE_STUDIO_RESOURCE_URL = "http://localhost:8080/sksuebung/resources/studio";
+
+            $(document).ready(refresh);
+
+            function refresh() {
+                $.ajax({
+                    url: SKSUE_STUDIO_RESOURCE_URL,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        Authorization: "Basic " + btoa("admin:admin")
+                    },
+                    success: function (data, textStatus, jqXHR) {
+                        var html = "";
+                        data.forEach(function (studio) {
+                            html += "<li><button onclick=\"showStudio('" + studio.id + "');\">" + studio.name + "</button></li>";
+                        });
+                        html = "<ul>" + html + "<ul>";
+                        $("#content").html(html);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+
+            function showStudio(id) {
+                $.ajax({
+                    url: SKSUE_STUDIO_RESOURCE_URL + "/" + id,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        Authorization: "Basic " + btoa("admin:admin")
+                    },
+                    success: function (studio, textStatus, jqXHR) {
+                        alert(JSON.stringify(studio));
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert(xhr.responseText);
+                    }
+                });
+            }
+
+        </script>
+    </head>
+    <body>
+        <form>
+            <input type="button" value="Refresh" onclick="refresh();">
+        </form>
+        <p id="content">
+
+        </p>
+    </body>
+</html>

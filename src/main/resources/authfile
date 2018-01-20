@@ -1,0 +1,1 @@
+http://${sksue.user}:${sksue.password}@localhost:8080/sksuebung/MovieWebService?wsdl
